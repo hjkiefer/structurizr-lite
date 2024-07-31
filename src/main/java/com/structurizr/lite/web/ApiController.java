@@ -85,13 +85,7 @@ public class ApiController extends AbstractController {
                 throw new HttpUnauthorizedException("Incorrect API key");
             }
 
-            String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
-            if (StringUtils.isNullOrEmpty(contentType) || contentType.startsWith(";")) {
-                contentType = "";
-            } else if (!contentType.contains(" ")) {
-                String[] parts = contentType.split(";");
-                contentType = parts[0] + "; " + parts[1];
-            }
+            String contentType = "";
 
             String nonce = request.getHeader(HttpHeaders.NONCE);
             if (nonce == null || nonce.length() == 0) {
